@@ -1,6 +1,8 @@
 CAPSTONE PROJECT
+============
 
 CRICMANIA
+============
 
 
 Introduction
