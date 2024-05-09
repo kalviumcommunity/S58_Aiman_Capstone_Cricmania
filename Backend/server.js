@@ -11,12 +11,15 @@ app.get('/ping', (req, res) => {
 app.post('/register', (req, res) => {
   const { email, password } = req.body;
 
-  if (!email || !password) {
+  if (typeof email !== 'string' || typeof password !== 'string') {
+    return res.status(400).json({ error: 'Email and password must be strings' });
+  }
+
+  if (!email.trim() || !password.trim()) {
     return res.status(400).json({ error: 'Email and password are required' });
   }
 
- 
-  res.status(200).json({ message: 'Registered successfully' });
+  res.status(200).json({ message: 'Registered successfully',  });
 });
 
 const server = app.listen(PORT, () => {
