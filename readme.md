@@ -31,3 +31,7 @@ Key Features
 -   DAY 4 - Starting with the backend part like connection etc.
 
 -   Day 5 - Creating routes
+
+### Backend Deployed Link
+
+https://s58-aiman-capstone-cricmania.onrender.com/ping
