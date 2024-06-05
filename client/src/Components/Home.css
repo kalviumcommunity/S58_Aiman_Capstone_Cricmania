@@ -1,0 +1,21 @@
+/* src/components/Home.css */
+
+.white-text {
+  color: #fff; /* White text color */
+}
+
+.home-container {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.home-header {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.home-intro {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
