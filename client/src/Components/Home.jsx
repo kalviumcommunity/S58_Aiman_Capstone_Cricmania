@@ -6,17 +6,10 @@ import './Home.css'; // Import the CSS file for styling
 const Home = () => {
   return (
     <div className="home-container">
-      <header className="home-header">
-        <h1>Your ultimate cricket companion</h1>
-      </header>
-      <section className="home-intro">
-        <p>
-          Cricmania is a must-have app for all cricket lovers around the globe. Compare current and past players' statistics from across the globe in different formats, explore stadiums, and much more!
-        </p>
-        <p>
-          Whether you are a fan of ODIs, T20s, or Test matches, Cricmania has everything you need to stay updated and entertained.
-        </p>
-      </section>
+      <h1 className="home-header white-text">Welcome to Cricmania</h1>
+      <p className="home-intro white-text">
+        Your ultimate cricket companion. Compare player statistics, explore stadiums, and enjoy fun games!
+      </p>
     </div>
   );
 };
