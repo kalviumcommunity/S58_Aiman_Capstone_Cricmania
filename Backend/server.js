@@ -1,61 +1,47 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const Player = require('./models/Player'); // Ensure this path is correct
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(cors());
 app.use(express.json());
 
-app.get('/ping', (req, res) => {
-  res.send('pong');
+// MongoDB Atlas connection URI
+const mongoURI = 'mongodb+srv://Aiman30:Aiman%4030@cluster0.c0nai7r.mongodb.net/Cricmania?retryWrites=true&w=majority&appName=Cluster0';
+
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+// Endpoint to fetch all players
+app.get('/players', async (req, res) => {
+  try {
+    const players = await Player.find();
+    res.json(players);
+  } catch (err) {
+    console.error('Failed to fetch players:', err);
+    res.status(500).json({ error: 'Failed to fetch players' });
+  }
 });
 
-app.post('/post', (req, res) => {
-  const { email, password } = req.body;
-
-  if (typeof email !== 'string' || typeof password !== 'string') {
-    return res.status(400).json({ error: 'Invalid Email or Password' });
+// Endpoint to fetch stats for a specific player by name
+app.get('/player/:name', async (req, res) => {
+  const { name } = req.params;
+  try {
+    const player = await Player.findOne({ name });
+    if (!player) {
+      return res.status(404).json({ error: 'Player not found' });
+    }
+    res.json(player.stats);
+  } catch (err) {
+    console.error(`Failed to fetch stats for ${name}:`, err);
+    res.status(500).json({ error: `Failed to fetch stats for ${name}` });
   }
-
-  if (!email.trim() || !password.trim()) {
-    return res.status(400).json({ error: 'Email and password are required' });
-  }
-
-  // Placeholder for actual registration logic
-  // In a real application, you would add the user to the database here
-  res.status(200).json({ message: 'Registered successfully' });
 });
 
-app.put('/update', (req, res) => {
-  const { email, password, newEmail } = req.body;
-
-  if (typeof email !== 'string' || typeof password !== 'string' || typeof newEmail !== 'string') {
-    return res.status(400).json({ error: 'Invalid Email, Password, or New Email' });
-  }
-
-  if (!email.trim() || !password.trim() || !newEmail.trim()) {
-    return res.status(400).json({ error: 'Email, password, and new email are required' });
-  }
-
-  const userExists = mockUserExists(email, password);
-
-  if (!userExists) {
-    return res.status(404).json({ error: 'User not found' });
-  }
-
-  // Placeholder for actual update logic
-  // In a real application, you would update the user's email and password in the database
-  res.status(200).json({ message: 'Updated successfully', updatedEmail: newEmail });
-});
-
-// Mock function to check if user exists
-function mockUserExists(email, password) {
-  const mockDatabase = [
-    { email: 'test@example.com', password: 'securepassword' },
-    { email: 'user@example.com', password: 'anotherpassword' }
-  ];
-
-  return mockDatabase.some(user => user.email === email && user.password === password);
-}
-
-const server = app.listen(PORT, () => {
-  console.log(`Server is running on port ${server.address().port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
