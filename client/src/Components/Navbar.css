@@ -1,0 +1,19 @@
+/* src/components/Navbar.css */
+
+.navbar {
+    width: 100%;
+    background-color: #0275d8;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .navbar h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  

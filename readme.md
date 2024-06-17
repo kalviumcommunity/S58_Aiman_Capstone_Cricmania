@@ -35,3 +35,7 @@ Key Features
 ### Backend Deployed Link
 
 - https://s58-aiman-capstone-cricmania.onrender.com/ping
+
+### Frontend Deployed Link
+
+- https://66607fdb6d85662e5fdc0290--aquamarine-palmier-74611b.netlify.app/
