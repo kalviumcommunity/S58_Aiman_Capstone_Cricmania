@@ -34,4 +34,4 @@ Key Features
 
 ### Backend Deployed Link
 
-https://s58-aiman-capstone-cricmania.onrender.com/ping
+- https://s58-aiman-capstone-cricmania.onrender.com/ping
