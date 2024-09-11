@@ -1,18 +1,16 @@
 // server.js
+require('dotenv').config(); // Ensure dotenv is loaded at the top
 
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
+const connectDB = require('./config/db'); // Importing the database connection setup
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-
-// MongoDB connection setup
-const connectDB = require('./config/db');
 
 // Connect to MongoDB
 connectDB()
@@ -31,7 +29,10 @@ connectDB()
 
 // Import routes
 const playersRouter = require('./routes/players');
+const authRoutes = require('./routes/auth');
+
 app.use('/api/players', playersRouter);
+app.use('/api/auth', authRoutes);
 
 // Endpoint to check MongoDB connection status
 app.get('/', (req, res) => {

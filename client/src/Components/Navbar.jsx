@@ -1,5 +1,3 @@
-// src/components/Navbar.js
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
@@ -11,6 +9,10 @@ const Navbar = () => {
       <div className="navbar-links">
         <Link to="/">Home</Link>
         <Link to="/compare">Compare</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/register">Register</Link>
+        {/* Add logic to conditionally show Logout when user is logged in */}
+        <Link to="/logout">Logout</Link>
       </div>
     </nav>
   );
